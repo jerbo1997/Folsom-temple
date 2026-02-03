@@ -1,0 +1,2 @@
+serviceType,serviceTitle,description,note,time,season,occurence,price,currency,config,prebookCutOff,Type
+Donation,Jeernodhdharana Ashtabandhana Kumbhabhisekam,Temple Kumbhabhisekam donation,Temple Kumbhabhisekam donation,"{""morning"":null,""evening"":null}","{""summer"":{""morning"":null,""evening"":null},""winter"":{""morning"":null,""evening"":null}}","[""""]",0,INR,"{""minAmount"":""10"",""maxAmount"":""1500000"",""isEditable"":true}",0,Requring

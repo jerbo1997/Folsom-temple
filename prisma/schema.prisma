@@ -1,0 +1,494 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String            @id @default(cuid())
+  name            String?
+  star            String?
+  rasi            String?
+  gothram         String?
+  email           String?
+  countryCode     String?
+  mobile          String?           @unique
+  gender          String?
+  dob             DateTime?
+  signUpMethod    String?
+  imageUrl        Json?
+  androidFcmToken String[]
+  iosFcmToken     String[]
+  address         Address[]
+  role            Roles?            @relation(fields: [rolesId], references: [id])
+  rolesId         String?
+  templeIds       Temple[]
+  cart            Cart[]
+  familyMember    FamilyMember[]
+  orders          Order[]           @relation("user")
+  adminOrders     Order[]           @relation("admin")
+  isActive        Boolean           @default(true)
+  notification    Notification[]
+  newsLetters     NewsLetter[]
+  createdAssets   Asset[]           @relation(name: "createdAsset")
+  updatedAssets   Asset[]
+  donatedAssets   Asset[]           @relation(name: "donatedAsset")
+  attachments     Attachment[]
+  bookings        PremiumBookings[]
+  properties      Property[]
+  rentals         RentalInfo[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model FamilyMember {
+  id        String     @id @default(cuid())
+  name      String
+  star      String
+  rasi      String
+  isPrimary Boolean    @default(false)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  CartItem  CartItem[]
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Address {
+  id           String            @id @default(cuid())
+  name         String?
+  mobile       String?
+  addressLine1 String
+  addressLine2 String?
+  landmark     String?
+  pinCode      String
+  city         String
+  state        String?
+  country      String?
+  type         String?
+  tag          String?
+  user         User?             @relation(fields: [userId], references: [id])
+  userId       String?
+  bookings     PremiumBookings[]
+  orders       Order[]
+  properties   Property[]
+  rentals      RentalInfo[]
+  isActive     Boolean           @default(true)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+model Roles {
+  id          String        @id @default(cuid())
+  name        String        @unique
+  permissions Permissions[]
+  users       User[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Permissions {
+  identifier  String   @id @unique
+  description String?
+  roles       Roles[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Organisation {
+  id        String   @id @default(cuid())
+  name      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Temple {
+  id              String            @id @default(cuid())
+  name            String
+  templeId        String            @default("Temple-1")
+  phone           String[]
+  mobile          String[]
+  address         String
+  state           String
+  country         String
+  postalCode      String
+  tags            String[]
+  history         String
+  about           Json
+  timingMeta      Json
+  users           User[]
+  timings         Timing[]
+  groups          Group[]
+  services        Service[]
+  isPremium       Boolean
+  email           String[]
+  websiteUrl      String[]
+  deities         Deity[]
+  assets          Asset[]
+  premiumBookings PremiumBookings[]
+  properties      Property[]
+  rentals         RentalInfo[]
+  isActive        Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@unique([templeId])
+}
+
+model Timing {
+  id        String   @id @default(cuid())
+  title     String
+  timing    Json
+  temple    Temple?  @relation(fields: [templeId], references: [id])
+  templeId  String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Group {
+  id        String   @id @default(cuid())
+  name      String
+  members   Member[]
+  temple    Temple?  @relation(fields: [templeId], references: [id])
+  templeId  String?
+  groupSort Int?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Member {
+  id          String   @id @default(cuid())
+  name        String
+  contactNo   String[]
+  email       String?
+  imageUrl    String?
+  designation String?
+  sortOrder   Int
+  group       Group?   @relation(fields: [groupId], references: [id])
+  groupId     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ServiceType {
+  id          String      @id @default(cuid())
+  type        String      @unique
+  description String?
+  services    Service[]
+  imageUrl    Attachment?
+  sortOrder   Int?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Service {
+  id              String            @id @default(cuid())
+  title           String
+  description     String?
+  time            Json?
+  occurence       Json?
+  occurenceType   String[]
+  dates           String[]
+  timing          String?
+  season          Json?
+  config          Json?
+  prebookCutOff   Int               @default(0)
+  price           Float?
+  currency        String?
+  note            String?
+  startDate       DateTime?
+  endDate         DateTime?
+  attachments     String[]
+  parentService   Service?          @relation("parentService", fields: [parentServiceId], references: [id])
+  parentServiceId String?
+  subServices     Service[]         @relation("parentService")
+  serviceCalendar ServiceCalendar[]
+  temple          Temple?           @relation(fields: [templeId], references: [id])
+  templeId        String?
+  ServiceType     ServiceType?      @relation(fields: [serviceTypeId], references: [id])
+  serviceTypeId   String?
+  bookings        PremiumBookings[]
+  cartItems       CartItem[]
+  orders          Order[]
+  imageUrl        Attachment?
+  isActive        Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model ServiceCalendar {
+  id        String     @id @default(cuid())
+  date      DateTime
+  service   Service    @relation(fields: [serviceId], references: [id])
+  serviceId String
+  cartItems CartItem[]
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Cart {
+  id                 String     @id @default(cuid())
+  amount             Float      @default(0)
+  checkout           Boolean    @default(false)
+  templeId           String?
+  user               User?      @relation(fields: [userId], references: [id])
+  userId             String?
+  order              Order?
+  cartItems          CartItem[]
+  specialInstruction String?
+  isActive           Boolean    @default(true)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+}
+
+model CartItem {
+  id                String           @id @default(cuid())
+  quantity          Int
+  price             Float
+  amount            Float
+  cart              Cart?            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId            String?
+  serviceCalendar   ServiceCalendar? @relation(fields: [serviceCalendarId], references: [id])
+  serviceCalendarId String?
+  service           Service?         @relation(fields: [serviceId], references: [id])
+  serviceId         String?
+  devotees          FamilyMember[]
+  isActive          Boolean          @default(true)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+model Order {
+  id                 String   @id @default(cuid())
+  amount             Float?
+  orderNo            String?
+  orderId            String?  @unique
+  orderStatus        String?
+  inPersonVisit      Boolean
+  address            Address? @relation(fields: [addressId], references: [id])
+  addressId          String?
+  specialInstruction String?
+  isOfflineOrder     Boolean  @default(false)
+  additionalInfo     Json?
+  isInstantOrder     Boolean?
+  cart               Cart?    @relation(fields: [cartId], references: [id])
+  cartId             String?  @unique
+  payment            Payment? @relation(fields: [paymentId], references: [id])
+  paymentId          String?  @unique
+  createdBy          User?    @relation(name: "user", fields: [createdById], references: [id])
+  createdById        String?
+  createdFor         User?    @relation(name: "admin", fields: [createdForId], references: [id])
+  createdForId       String?
+  service            Service? @relation(fields: [serviceId], references: [id])
+  serviceId          String?
+  isActive           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Payment {
+  id            String   @id @default(cuid())
+  paymentId     String?
+  order         Order?
+  paymentMethod String?
+  mode          String   @default("Online")
+  invoiceId     String?
+  status        String
+  amount        Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Config {
+  id                  String    @id @default(cuid())
+  serviceCronStart    DateTime?
+  serviceNextCron     DateTime?
+  serviceCronLoadDays Int?      @default(90)
+}
+
+model Notification {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  targetId     String
+  targetModule String
+  isRead       Boolean  @default(false)
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String?
+  role         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model NewsLetter {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  files       String[]
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Deity {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  detail      String?
+  specialName String[]
+  tag         String[]
+  imageUrl    String[]
+  temple      Temple   @relation(fields: [templeId], references: [templeId])
+  templeId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Asset {
+  id          String       @id @default(cuid())
+  title       String
+  type        String
+  quantity    Int?         @default(1)
+  description String?
+  value       String?
+  attachments Attachment[]
+  createdBy   User         @relation(name: "createdAsset", fields: [createdId], references: [id])
+  createdId   String
+  donatedBy   User?        @relation(name: "donatedAsset", fields: [donatedById], references: [id])
+  donatedById String?
+  updatedBy   User?        @relation(fields: [updatedId], references: [id])
+  updatedId   String?
+  temple      Temple       @relation(fields: [templeId], references: [id])
+  templeId    String
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Attachment {
+  id            String       @id @default(cuid())
+  url           String
+  mime          String
+  asset         Asset?       @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  assetId       String?
+  service       Service?     @relation(fields: [serviceId], references: [id])
+  serviceId     String?      @unique
+  serviceType   ServiceType? @relation(fields: [serviceTypeId], references: [id])
+  serviceTypeId String?      @unique
+  property      Property?    @relation(fields: [propertyId], references: [id])
+  propertyId    String?      @unique
+  createdBy     User?        @relation(fields: [userId], references: [id])
+  userId        String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model DateMap {
+  id         String   @id @default(cuid())
+  date       DateTime
+  tamilMonth String
+  star       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum TamilMonth {
+  Chithrai
+  Vaigasi
+  Aani
+  Aadi
+  Avani
+  Purattasi
+  Iypasi
+  Karthigai
+  Margazhi
+  Thai
+  Maasi
+  Panguni
+}
+
+model PremiumBookings {
+  id             String      @id @default(cuid())
+  registrationNo Int
+  title          String
+  devoteeName    String
+  address        Address     @relation(fields: [addressId], references: [id])
+  addressId      String
+  user           User        @relation(fields: [userId], references: [id])
+  userId         String
+  service        Service?    @relation(fields: [serviceId], references: [id])
+  serviceId      String?
+  temple         Temple      @relation(fields: [templeId], references: [id])
+  templeId       String
+  date           Int?
+  englishMonth   Int?
+  tamilMonth     TamilMonth?
+  bookingDate    DateTime
+  rptNo          Int
+  amount         Int
+  occasion       String?
+  isActive       Boolean     @default(true)
+  deityName      String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+enum RentalStatus {
+  AVAILABLE
+  NOT_AVAILABLE
+  RENTED_OUT
+}
+
+model Property {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  fees        Float?
+  image       Attachment?
+  address     Address?     @relation(fields: [addressId], references: [id])
+  addressId   String?
+  status      RentalStatus
+  rentals     RentalInfo[]
+  createdBy   User         @relation(fields: [createdById], references: [id])
+  createdById String
+  temple      Temple       @relation(fields: [templeId], references: [templeId])
+  templeId    String
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model RentalInfo {
+  id               String   @id @default(cuid())
+  name             String
+  phoneNumber      String
+  address          Address? @relation(fields: [addressId], references: [id])
+  addressId        String?
+  noOfDays         Int?
+  fees             Float?
+  rentalProperty   Property @relation(fields: [rentalPropertyId], references: [id])
+  rentalPropertyId String
+  startDate        String?
+  endDate          String?
+  remarks          String?
+  createdBy        User     @relation(fields: [createdById], references: [id])
+  createdById      String
+  temple           Temple   @relation(fields: [templeId], references: [templeId])
+  templeId         String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

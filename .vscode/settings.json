@@ -1,0 +1,125 @@
+{
+  // Place your settings in this file to overwrite the default settings
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": true,
+  "editor.lightbulb.enabled": "off",
+  "editor.fontLigatures": false,
+  "editor.rulers": [60],
+  "editor.snippetSuggestions": "inline",
+  "editor.wordBasedSuggestions": "off",
+  "editor.suggest.localityBonus": true,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "[javascripts]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.suggestSelection": "recentlyUsed",
+    "editor.suggest.showKeywords": false
+  },
+  "[typescript]": {
+    "editor.suggestSelection": "recentlyUsed",
+    "editor.suggest.showKeywords": false
+  },
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "cSpell.fixSpellingWithRenameProvider": true,
+    "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
+  },
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 120,
+  "prettier.printWidth": 120,
+  "editor.fontSize": 12,
+  "editor.tabSize": 2,
+  "editor.hover.enabled": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.glyphMargin": false,
+  "editor.folding": true,
+  "css.lint.unknownAtRules": "ignore",
+  "prettier.bracketSpacing": false,
+  "prettier.proseWrap": "always",
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always",
+  "prettier.useEditorConfig": false,
+  "files.exclude": {
+    "USE_GITIGNORE": true
+  },
+  "files.associations": {
+    "*.md": "mdx"
+  },
+  "files.defaultLanguage": "{activeEditorLanguage}",
+  "javascript.suggest.autoImports": false,
+  "javascript.validate.enable": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.build": true,
+    "**/.history": true,
+    "**/.next": true,
+    "**/.gh-pages": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "terminal.integrated.profiles.osx": {},
+  "terminal.integrated.scrollback": 10000,
+  "explorer.openEditors.visible": 1,
+  "editor.lineNumbers": "on",
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "none",
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": false,
+  "workbench.editor.limit.value": 18,
+  "debug.javascript.codelens.npmScripts": "never",
+  "breadcrumbs.enabled": true,
+  "npm.runSilent": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.multiCursorModifier": "alt",
+  "editor.formatOnPaste": false,
+  "window.zoomLevel": 1,
+  "editor.minimap.enabled": false,
+  "spellright.language": ["en"],
+  "spellright.documentTypes": ["markdown", "plaintext", "mdx"],
+  "spellright.parserByClass": {
+    "mdx": {
+      "parser": "markdown"
+    }
+  },
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "php.suggest.basic": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "npm.packageManager": "pnpm",
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": []
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "material-icon-theme.folders.color": "#EB880B",
+  "material-icon-theme.files.color": "#42a5f5",
+  "material-icon-theme.folders.theme": "specific",
+  "material-icon-theme.files.associations": {},
+  "cSpell.words": ["Razorpay", "tanstack"],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
+}
