@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "folsom-temple-dev",
+  "private_key_id": "ff94d376cc260b1f5b957d19ba3c60c3e7e8c82a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdIhYsacmAkFeG\nUCe+HrF3UUc0KqrDSTF9qSjCScxxxEK/iZnlso+0aNcGCzyLFpLjXsH4eJV9p9+C\n4qrWiPxgW8goF3rFH4JaYE+30lQEjFI0J8LvbAtq6EjvUSxlaJzXpAdK1/nB4Fnm\nys4pK+DE3MUofTn4OQmkc0IpsKTkEWiLQjCYZWenejwYDFa+8mc8Z37MLTcuPD1E\nmx4sGexZG6RclGnug8fwVjOKsrUZ1z1vS6LTWrlHQjupjT9wfzIwTrzIoWLlll0x\n8xtNkAEqg3lFdP5MXaEPRTVkTxBxyHbpFNo8Qt1CunnaAKOjgbRBlfoJhDKTkVs0\nfBzGZyffAgMBAAECggEARAQNNQxVfKD+QdVQXqtKhitYduxBHmcAVTRzwCXRqS0a\n923If/Ta32zCJouWmV4cFu9dZwBLNSkFRtJ2wIZrOAqCiVggfFM3SYeG+jrAw3c5\n3fmYF6rdBlmluHGalgrCWVVXEr6KDbHfOFdxBcFIee5WKUCLZzbJRbXeXc1oko+I\n2oyhEfTt/TShoKcVZ9RsJ4XGYEZh4wwFHgprg8eiN6WbSd1xhyXxxlCkR9HIgMd9\nUvyMTU5qkohFfBEtGQF1DuHxvITw8hgLdpheC5nMIxyJwM3FEb2HlrLdqPewFb8p\nb2zE9mHXeqCRmHe/pd8/mcwlZE0hwWd9PPdxU5NVAQKBgQDLeP5za2SyO9/aowad\nLz68f4SCX1yezYHGyhm0ClBUaRrHdoVE2qjaxZhXC06phgDGvPWeij/EOcVWZGg1\nlU1gcYrH2Uq7FmHN1PcuGYIRvhAhNnybQV1m2dl2MfvVreg1TDIFiKQXSamtOMnb\nAfLk2lT4rN+o8sW9lDlvaVdiWQKBgQDFsqFXihQzmKDjgMiYEresgdCF+OaFz6Mk\nhQzOpG4kSgfpUiCDUk7KHUqwPQ/dNK+j8J9fTjTgQJNZB7g7ShkAhhomnkbLstL5\nyhtcfZ8eqpqAXeH0KEnH9abDIfYEf5ZWReiRGX8r8VcmgH97Z6sPkwq5BPn17q52\nKvmh24Dk9wKBgQCCUEJ+v1glgo1S5LhWsSx34x+Fs/eIyUuFemhN05ExDoOVHcYq\nm/Qq8QQpM1e04NrcbabNW/ONBAbr1rCbKLz+uJlOd08SVTpcbjnEr5eLL3P7IX9a\nm9lrBrjspwSIDLI8eElNG/8j3wypoUY+Wpgqk955yZYRCTM1wJmsTgYmOQKBgCmV\nZjx8jb1AmG7iEs9x+HJvp8XWUd7Jiv5OgiAhFA3MCJf6L16P/ISk3qXtYh3cTCmG\nnm80iwi0bInohsbp0hJ7IpsG5ctI5PmnmlO9FLAloHPpy3JI2yQVNquKxC20DJI/\nCCklHMvIatVtZ+M0LhYLjtDWDCG/v7CZX4K9IgKHAoGAIE6Aus0D4r3nW0Rdcb42\nopiufeO6LxnK8AsHfRn5Mli0w0fd2cYmcZjE6/Skm6KOMbZC1CaQwY9MIEf/q/ht\nd5JeOxKxVQvJPGpf2lyLxGeWh+pwUeJ9LEDwGfCu5wb7h1pyydWSSYPWiP7VzvkD\nmXYqLU7WNFcEsMc1aOAKkK8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@folsom-temple-dev.iam.gserviceaccount.com",
+  "client_id": "109590476749166398866",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40folsom-temple-dev.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
